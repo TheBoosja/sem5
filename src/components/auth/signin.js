@@ -23,15 +23,20 @@ class SignIn extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.authError('');
+	}
+
 	onFormSubmit({ email, password }) {
-		this.props.signInUser({ email, password });
+		const { from } = this.props.location.state || { from: { pathname: '/' } };
+		this.props.signInUser({ email, password, from });
 	}
 
 	render() {
 		const { handleSubmit } = this.props;
 
 		return (
-			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className='content'>
+			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className='content auth'>
 				<Field
 					label='Email'
 					name='email'

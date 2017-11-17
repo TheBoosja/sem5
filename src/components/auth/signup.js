@@ -26,6 +26,10 @@ class SignUp extends Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.authError('');
+	}
+
 	onFormSubmit({ email, password }) {
 		this.props.signUpUser({ email, password });
 	}
@@ -34,7 +38,7 @@ class SignUp extends Component {
 		const { handleSubmit, submitting } = this.props;
 
 		return (
-			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className='content'>
+			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className='content auth'>
 				<Field
 					label='Email'
 					name='email'
