@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MemoryRouter } from 'react-router-dom';
 
-import App from '../components/App';
-import Search from '../components/search';
-
-it('renders without crashing', () => {
-	const div = document.createElement('div');
-	ReactDOM.render(<App />, div);
-});
+import App from '../components/app';
 
 it('renders without crashing', () => {
 	const div = document.createElement('div');
-	ReactDOM.render(<Search />, div);
+	ReactDOM.render(
+		<MemoryRouter>
+			<App />
+		</MemoryRouter>
+		, div);
 });
