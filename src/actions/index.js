@@ -17,12 +17,12 @@ export function signUpUser({ email, password }) {
 				dispatch(push('/'));
 			})
 			.catch(error => {
-				dispatch(authError(error));
+				dispatch(authError(error.message));
 			});
 	};
 }
 
-export function signInUser({ email, password }) {
+export function signInUser({ email, password, from }) {
 	return (dispatch) => {
 		// Authenticate with firebase
 		fire.auth().signInWithEmailAndPassword(email, password)
@@ -31,11 +31,16 @@ export function signInUser({ email, password }) {
 				// Change auth state
 				dispatch({ type: AUTH_USER });
 				// Redirect
-				dispatch(push('/'));
+				dispatch(push(from));
 			})
 			// Error
 			.catch(error => {
-				dispatch(authError(error));
+				if (error.code === 'auth/user-not-found'){
+					dispatch(authError('Invalid credentials'));
+				}
+				else {
+					dispatch(authError(error.message));
+				}
 			});
 	};
 }
@@ -47,7 +52,7 @@ export function signOutUser() {
 			dispatch({ type: UNAUTH_USER });
 		})
 		.catch(error => {
-			dispatch(authError(`Unable to sign out: ${error}`));
+			dispatch(authError(`Unable to sign out: ${error.message}`));
 		});
 	};
 }
