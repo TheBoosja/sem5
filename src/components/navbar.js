@@ -1,27 +1,23 @@
 import '../css/navbar.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 class NavBar extends Component {
-	renderLinks() {
-		if (!this.props.authenticated) {
-			return [
-				<NavLink to='/signin' id='signin' activeClassName='active' key={0}>Sign In</NavLink>,
-				<NavLink to='/signup' id='signup' activeClassName='active' key={1}>Sign Up</NavLink>
-			];
-		}
-		else {
-			return <NavLink to='/signout' id='signout' activeClassName='active'>Sign Out</NavLink>;
-		}
+	renderAuthLinks() {
+		return !this.props.authenticated
+			? [ <NavLink to='/signin' id='signin' activeClassName='active' key={0}>Sign In</NavLink>,
+				<NavLink to='/signup' id='signup' activeClassName='active' key={1}>Sign Up</NavLink> ]
+			: [ <NavLink to='/profile' id='profile' activeClassName='active' key={0}>Profile</NavLink>,
+				<NavLink to='/signout' id='signout' activeClassName='active' key={1}>Sign Out</NavLink> ];
 	}
 
 	render() {
 		return (
 			<div className='navbar'>
-				<NavLink exact to='/' className='home-link' activeClassName='active'>Home</NavLink>
-				<NavLink to='/search' className='search-link' activeClassName='active'>Search</NavLink>
-				{this.renderLinks()}
+				<NavLink exact to='/' id='home' activeClassName='active'>Home</NavLink>
+				{this.renderAuthLinks()}
+				<NavLink to='/search' id='search' activeClassName='active'>Search</NavLink>
 			</div>
 		);
 	}
@@ -33,4 +29,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(NavBar);
+export default withRouter(connect(mapStateToProps)(NavBar));
