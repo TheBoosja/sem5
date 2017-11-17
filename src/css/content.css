@@ -1,0 +1,10 @@
+
+.content {
+	grid-area: content;
+	padding-bottom: 20px;
+}
+
+.content p {
+	text-align: left;
+}
+
