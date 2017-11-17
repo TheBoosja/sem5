@@ -15,7 +15,7 @@ import Footer from './footer';
 // Routes
 import NoMatch from './noMatch.js';
 import Home from './home';
-import Search from './search';
+import Search from './search/search';
 import Profile from './profile';
 
 class App extends Component {
