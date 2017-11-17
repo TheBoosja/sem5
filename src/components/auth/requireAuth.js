@@ -6,7 +6,7 @@ export default function(ComposedComponent) {
 	class Authentication extends Component {
 		render() {
 			return (!this.props.authenticated)
-				? <Redirect to='/signin' />
+				? <Redirect to={{ pathname: '/signin', state: { from: this.props.location } }} />
 				: <ComposedComponent {...this.props} />;
 		}
 	}

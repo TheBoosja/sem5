@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 export default (state = {}, action) => {
-	switch(action.type) {
+	switch (action.type) {
 		case AUTH_USER:
 			return { ...state, authenticated: true, error: '' };
 		case UNAUTH_USER:
@@ -15,6 +15,5 @@ export default (state = {}, action) => {
 		default:
 			break;
 	}
-	
 	return state;
 };
