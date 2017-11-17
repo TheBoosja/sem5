@@ -1,6 +1,6 @@
 import '../css/footer.css';
 import React, { Component } from 'react';
-import tmdb from '../TMDB.svg';
+import tmdb from '../tmdb.svg';
 import logo from '../logo.svg';
 import { title } from '../info';
 
