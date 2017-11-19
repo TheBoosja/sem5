@@ -1,0 +1,18 @@
+
+.searchItem {
+	text-align: center;
+}
+
+.searchItem img {
+	min-width: 100%;
+	height: auto;
+}
+
+.searchItem h3 {
+	margin: 0;
+}
+
+.searchItem p {
+	text-align: center;
+	margin: 0;
+}

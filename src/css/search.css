@@ -18,5 +18,11 @@
 }
 
 .searchList {
+	margin: 0;
+	padding: 0;
 	text-align: left;
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 5px;
 }
