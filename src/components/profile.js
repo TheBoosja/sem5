@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Grid } from 'react-bootstrap';
 
 class Profile extends Component {
 	render() {
 		return (
-			<div className='content'>
+			<Grid>
 				<h2>Profile</h2>
-			</div>
+			</Grid>
 		);
 	}
 }

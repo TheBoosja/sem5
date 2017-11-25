@@ -1,33 +1,45 @@
-import '../../css/auth.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions';
+import { 
+	Grid, 
+	Form, 
+	FormGroup, 
+	FormControl, 
+	ControlLabel, 
+	Col, 
+	Button, 
+	Alert 
+} from 'react-bootstrap';
 
 class SignUp extends Component {
-	renderField(field) {
-		const { meta: { touched, error }} = field;
+	componentWillUnmount() {
+		this.props.authError('');
+	}
 
-		return ( 
-			<fieldset>
-				<input {...field.input} type={field.type} placeholder={field.label} />
-				{touched && error && <div className='error'>{error}</div>}
-			</fieldset>
+	renderField(field) {
+		const { meta: { touched, error } } = field;
+
+		return (
+			<FormGroup controlId={field.name}>
+				<Col componentClass={ControlLabel} sm={2}>{field.label}</Col>
+				<Col sm={8}>
+					<FormControl {...field.input} type={field.type} placeholder={field.label} />
+					{touched && error && <div className='error'>{error}</div>}
+				</Col>
+			</FormGroup>
 		);
 	}
 
 	renderAlert() {
 		if (this.props.errorMessage) {
 			return (
-				<div className='error'>
-					{this.props.errorMessage}
-				</div>
+				<Col smOffset={2} sm={8}>
+					<Alert bsStyle='danger'>{this.props.errorMessage}</Alert>
+				</Col>
 			);
 		}
-	}
-
-	componentWillUnmount() {
-		this.props.authError('');
 	}
 
 	onFormSubmit({ email, password }) {
@@ -35,28 +47,34 @@ class SignUp extends Component {
 	}
 
 	render() {
-		const { handleSubmit, submitting } = this.props;
+		const { handleSubmit } = this.props;
 
 		return (
-			<form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className='content auth'>
-				<Field
-					label='Email'
-					name='email'
-					type='email'
-					component={this.renderField} />
-				<Field
-					label='Password'
-					name='password'
-					type='password'
-					component={this.renderField} />
-				<Field
-					label='Confirm Password'
-					name='passwordConfirm'
-					type='password'
-					component={this.renderField} />
-				{this.renderAlert()}
-				<button action='submit' disabled={submitting}>Sign Up</button>
-			</form>
+			<Grid>
+				<Form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} horizontal>
+					<Field
+						label='Email'
+						name='email'
+						type='email'
+						component={this.renderField} />
+					<Field
+						label='Password'
+						name='password'
+						type='password'
+						component={this.renderField} />
+					<Field
+						label='Confirm Password'
+						name='passwordConfirm'
+						type='password'
+						component={this.renderField} />
+					{this.renderAlert()}
+					<FormGroup>
+						<Col smOffset={2} sm={8}>
+							<Button type='submit'>Sign Up</Button>
+						</Col>
+					</FormGroup>
+				</Form>
+			</Grid>
 		);
 	}
 }
@@ -66,9 +84,9 @@ function validate(fields) {
 
 	// Email
 	if (!fields.email) {
-		errors.email = 'Enter email, please!';
+		errors.email = 'Enter an email, please!';
 	}
-	else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)) {
+	else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)) {
 		errors.email = 'Enter a valid email, please!';
 	}
 	// Passwords match?
@@ -77,16 +95,16 @@ function validate(fields) {
 	}
 	// Password
 	if (!fields.password) {
-		errors.password = 'Enter password, please!';
+		errors.password = 'Enter a password, please!';
 	}
 	else if (fields.password.length < 6) {
-		errors.password = 'Password must be 6+ characters.';
+		errors.password = 'The password must be 6+ characters.';
 	}
 	// Password Confirmation
 	if (!fields.passwordConfirm) {
-		errors.passwordConfirm = 'Enter password confirmation, please!';
+		errors.passwordConfirm = 'Confirm your password, please!';
 	}
-	
+
 	return errors;
 }
 

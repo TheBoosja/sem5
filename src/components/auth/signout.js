@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { Grid } from 'react-bootstrap';
 
 class SignOut extends Component {
 	componentWillMount() {
@@ -9,9 +10,9 @@ class SignOut extends Component {
 
 	render() {
 		return (
-			<div className='content'>
+			<Grid>
 				<h2>Sorry to see you go...</h2>
-			</div>
+			</Grid>
 		);
 	}
 }
