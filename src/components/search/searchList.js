@@ -1,29 +1,76 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/search';
+import {
+	Grid,
+	Col,
+	Clearfix,
+	ListGroup
+} from 'react-bootstrap';
 
-import ShowItem from './showItem';
+import SearchShowItem from './searchShowItem';
 
 class SearchList extends Component {
+	constructor(props) {
+		super(props);
+		
+		this.handleQuery.bind(this);
+	}
+
+	handleQuery(query) {
+		if (query) {
+			this.props.search(query);
+		}
+	}
+
+	componentWillMount() {
+		const { query } = this.props.match.params;
+
+		this.handleQuery(query);
+	}
+
+	componentWillUpdate(nextProps) {
+		const oldQuery = this.props.match.params.query;
+		const { query } = nextProps.match.params;
+
+		if (query !== oldQuery) {
+			this.props.search(query);
+		}
+	}
+
 	renderList() {
-		let i = 0;
-		return this.props.shows.map(show => <ShowItem show={show} key={i++} />);
+		return this.props.shows.map((show, i) => {
+			const elements = [
+				<Col sm={6} md={3} lg={2} key={i}>
+					<SearchShowItem show={show} key={i++} />
+				</Col>
+			];
+
+			if (i % 6 === 0)
+				elements.push(<Clearfix visibleLgBlock key={i + 1} />);
+			else if (i % 4 === 0)
+				elements.push(<Clearfix visibleMdBlock key={i + 1} />);
+			else if (i % 2 === 0)
+				elements.push(<Clearfix visibleSmBlock key={i + 1} />);
+
+			return elements;
+		});
 	}
 
 	render() {
 		if (this.props.shows) {
-			return [
-				<h3 key={0}>Results: {this.props.totalResults}</h3>,
-				<ul className='searchList' key={1}>
-					{this.renderList()}
-				</ul>
-			];
+			return (
+				<Grid>
+					<h3>Results: {this.props.totalResults}</h3>
+					<ListGroup>
+						{this.renderList()}
+					</ListGroup>
+				</Grid>
+			);
 		}
 		else {
 			return (
-				<div>
-					<h3>Search for a tv show...</h3>
-				</div>
+				<h3>Search for a tv show...</h3>
 			);
 		}
 	}
