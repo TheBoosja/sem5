@@ -13,7 +13,6 @@ export default (state = {}, action) => {
 		case AUTH_ERROR:
 			return { ...state, error: action.payload };
 		default:
-			break;
+			return state;
 	}
-	return state;
 };

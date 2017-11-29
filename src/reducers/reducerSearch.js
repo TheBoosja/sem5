@@ -5,7 +5,7 @@ import {
 export default (state = {}, action) => {
 	switch (action.type) {
 		case SEARCH_RESULT:
-			return { 
+			return {
 				...state,
 				results: action.payload.results,
 				page: action.payload.page,
@@ -13,7 +13,6 @@ export default (state = {}, action) => {
 				totalPages: action.payload.total_pages
 			};
 		default:
-			break;
+			return state;
 	}
-	return state;
 };
