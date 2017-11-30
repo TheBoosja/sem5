@@ -29,9 +29,8 @@ class SearchList extends Component {
 		this.handleQuery(query);
 	}
 
-	componentWillUpdate(nextProps) {
+	componentWillUpdate({ match: { params: { query } } }) {
 		const oldQuery = this.props.match.params.query;
-		const { query } = nextProps.match.params;
 
 		if (query !== oldQuery) {
 			this.props.emptyResults();
