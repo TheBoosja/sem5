@@ -3,6 +3,7 @@ import {
 	Switch,
 	Route
 } from 'react-router-dom';
+import { Grid } from 'react-bootstrap';
 
 import modalView from './modalView';
 import SignIn from './auth/signin';
@@ -15,9 +16,9 @@ import Home from './home';
 import ShowPage from './tv/showPage';
 
 import SearchBar from './search/searchBar';
+import SearchList from './search/searchList';
 // import Profile from './profile';
 
-import SearchList from './search/searchList';
 
 class ModalSwitch extends Component {
 	constructor(props) {
@@ -56,8 +57,9 @@ class ModalSwitch extends Component {
 					<Route path='/signin' component={SignIn} />
 					<Route path='/signup' component={SignUp} />
 					<Route path='/signout' component={SignOut} />
-					<Route exact path='/tv/:id' component={ShowPage} />
-					<Route exact path='/search/:query' component={SearchList} />;
+					<Route path='/tv/:id' component={ShowPage} />
+					<Route exact path='/search' render={() => <Grid><SearchBar /></Grid>} />
+					<Route path='/search/:query' component={SearchList} />;
 					{/* <Route path='/:user' component={requireAuth(Profile)} /> */}
 					<Route component={NoMatch} />
 				</Switch>
