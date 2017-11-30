@@ -1,4 +1,4 @@
-import { SEARCH_RESULT } from './types';
+import { SEARCH_RESULT, EMPTY_RESULT } from './types';
 
 const ROOT_URL = 'https://api.themoviedb.org/3/search/tv?api_key=e88fbcbf7600bbb2fbc4469a5d75ca09&language=en-US';
 
@@ -19,5 +19,11 @@ export function search(query) {
 				payload: res
 			});
 		});
+	};
+}
+
+export function emptyResults() {
+	return {
+		type: EMPTY_RESULT
 	};
 }

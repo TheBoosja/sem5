@@ -34,7 +34,8 @@ class SearchList extends Component {
 		const { query } = nextProps.match.params;
 
 		if (query !== oldQuery) {
-			this.props.search(query);
+			this.props.emptyResults();
+			this.handleQuery(query);
 		}
 	}
 
@@ -61,7 +62,7 @@ class SearchList extends Component {
 		if (this.props.shows) {
 			return (
 				<Grid>
-					<h3>Results: {this.props.totalResults}</h3>
+					<h3>Results: {this.props.total_results}</h3>
 					<ListGroup>
 						{this.renderList()}
 					</ListGroup>
@@ -70,16 +71,18 @@ class SearchList extends Component {
 		}
 		else {
 			return (
-				<h3>Search for a tv show...</h3>
+				<h3>Loading...</h3>
 			);
 		}
 	}
 }
 
-function mapStateToProps({ search }) {
+function mapStateToProps({ search: { results, total_results } }) {
 	return {
-		shows: search.results,
-		totalResults: search.totalResults
+		shows: results,
+		total_results
+		// page,
+		// total_pages
 	};
 }
 

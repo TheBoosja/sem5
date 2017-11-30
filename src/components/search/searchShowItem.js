@@ -12,7 +12,7 @@ class SearchShowItem extends Component {
 			NoPoster;
 
 		return (
-			<Link to={`/shows/${show.id}`}>
+			<Link to={`/tv/${show.id}`}>
 				<Image src={source} />
 				<h4>{show.name}</h4>
 				<p>{show.first_air_date}</p>
