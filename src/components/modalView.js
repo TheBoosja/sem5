@@ -26,10 +26,9 @@ export default function (ComposedComponent) {
 					<Modal.Body>
 						<ComposedComponent />
 					</Modal.Body>
-
-					<Modal.Footer>
+					{/* <Modal.Footer>
 						<Button bsSize='small' onClick={this.hide.bind(this)}>Cancel</Button>
-					</Modal.Footer>
+					</Modal.Footer> */}
 				</Modal>
 			);
 		}
