@@ -19,7 +19,7 @@ class SearchBar extends Component {
 		return (
 			<FormGroup bsSize='large'>
 				<Col smOffset={2} sm={8}>
-					<FormControl {...field.input} placeholder={field.label} />
+					<FormControl {...field.input} placeholder={field.label} autoFocus />
 				</Col>
 			</FormGroup>
 		);
