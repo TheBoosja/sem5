@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions/search';
-import { Form, FormGroup, Col, FormControl } from 'react-bootstrap';
+import { Form, FormGroup, FormControl } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 class SearchBar extends Component {
@@ -18,9 +18,7 @@ class SearchBar extends Component {
 	renderField(field) {
 		return (
 			<FormGroup bsSize='large'>
-				<Col smOffset={2} sm={8}>
-					<FormControl {...field.input} placeholder={field.label} autoFocus />
-				</Col>
+				<FormControl {...field.input} placeholder={field.label} autoFocus />
 			</FormGroup>
 		);
 	}
@@ -38,7 +36,7 @@ class SearchBar extends Component {
 
 		if (!this.state.redirectToSearchResult) {
 			return (
-				<Form inline onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
+				<Form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
 					<Field
 						label='Search'
 						name='query'
