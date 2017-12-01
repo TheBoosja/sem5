@@ -8,4 +8,5 @@ export const EMPTY_RESULT = 'empty_result';
 // TV
 export const GET_SHOW = 'get_show';
 export const GET_SEASON = 'get_season';
+export const GET_EPISODE = 'get_episode';
 export const EMPTY_DATA = 'empty_data';
