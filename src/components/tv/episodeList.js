@@ -55,7 +55,7 @@ class EpisodeList extends Component {
 					</Col> */}
 					<Col md={12}>
 						<ListGroup>
-							{overview && <ListGroupItem><strong>{overview}</strong></ListGroupItem>}
+							{overview && <ListGroupItem><em>{overview}</em></ListGroupItem>}
 							{this.renderEpisodes(episodes)}
 						</ListGroup>
 					</Col>
