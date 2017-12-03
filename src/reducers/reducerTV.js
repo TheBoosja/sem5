@@ -1,8 +1,8 @@
 import { 
 	GET_SHOW,
 	GET_SEASON,
-	GET_EPISODE,
-	EMPTY_DATA 
+	EMPTY_SHOW,
+	EMPTY_SEASON 
 } from '../actions/types';
 
 export default (state = {}, { type, payload }) => {
@@ -17,15 +17,14 @@ export default (state = {}, { type, payload }) => {
 				...state,
 				season: payload
 			};
-		case GET_EPISODE:
+		case EMPTY_SHOW:
 			return {
 				...state,
-				episode: payload
+				show: undefined
 			};
-		case EMPTY_DATA:
+		case EMPTY_SEASON:
 			return {
 				...state,
-				show: undefined,
 				season: undefined
 			};
 		default:
