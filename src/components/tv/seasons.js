@@ -22,9 +22,6 @@ class Seasons extends Component {
 		this.onChangeSeason = this.onChangeSeason.bind(this);
 	}
 
-	componentWillUpdate() {
-	}
-
 	onChangeSeason(selected) {
 		const selectedSeason = selected.length > 0 ? selected.pop() : 0;
 		this.setState({ selectedSeason });
@@ -50,7 +47,10 @@ class Seasons extends Component {
 
 		return (
 			<ListGroup componentClass='ul'>
-				{overview && <ListGroupItem><Utility /><em>{overview}</em></ListGroupItem>}
+				<ListGroupItem>
+					<Utility />
+					{overview && <em>{overview}</em>}
+				</ListGroupItem>
 
 				{episodes.map((episode, i) =>
 					<li key={i}
