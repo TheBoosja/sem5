@@ -14,7 +14,6 @@ import SignUp from './auth/signup';
 import NoMatch from './noMatch.js';
 import Home from './home';
 import ShowPage from './tv/showPage';
-import EpisodePage from './tv/episodePage';
 
 import SearchBar from './search/searchBar';
 import SearchList from './search/searchList';
@@ -58,8 +57,7 @@ class ModalSwitch extends Component {
 					<Route path='/signin' component={SignIn} />
 					<Route path='/signup' component={SignUp} />
 					<Route path='/signout' component={SignOut} />
-					<Route exact path='/tv/:id' component={ShowPage} />
-					<Route path='/tv/:id/:season/:episode' component={EpisodePage} />
+					<Route exact path='/tv/:id/:season?' component={ShowPage} />
 					<Route exact path='/search' render={() => <Grid><SearchBar /></Grid>} />
 					<Route path='/search/:query' component={SearchList} />;
 					{/* <Route path='/:user' component={requireAuth(Profile)} /> */}
