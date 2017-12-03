@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import moment from 'moment';
-import { Grid, Col, Image, PageHeader, ButtonGroup, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import {
+	Grid,
+	Col,
+	Image,
+	PageHeader
+} from 'react-bootstrap';
 import NoPoster from '../../img/no_poster_w270.png';
 
-import EpisodeList from './episodeList.js';
+import Seasons from './seasons';
+import Utility from './utility';
 
 class ShowPage extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			selectedSeason: 0
-		};
-
-		this.onChangeSeason = this.onChangeSeason.bind(this);
-	}
-
 	componentWillMount() {
 		const { id } = this.props.match.params;
 
@@ -27,25 +23,7 @@ class ShowPage extends Component {
 	}
 
 	componentWillUnmount() {
-		this.props.emptyData();
-	}
-
-	onChangeSeason(selected) {
-		this.setState({ selectedSeason: selected.length > 0 ? selected.pop() : 0 });
-	}
-
-	renderSeasonItems(number_of_seasons) {
-		const seasons = [];
-		for (let i = 0; i < number_of_seasons; i++) {
-			seasons.push(
-				<ToggleButton value={i + 1} key={i}>Season {i + 1}</ToggleButton>
-			);
-		}
-		return seasons;
-	}
-
-	renderSeason() {
-		return <EpisodeList seasonNum={this.state.selectedSeason} />;
+		this.props.emptyShow();
 	}
 
 	render() {
@@ -64,22 +42,30 @@ class ShowPage extends Component {
 
 			const renderSource = (path, size) => path ? `http://image.tmdb.org/t/p/w${size}${path}` : NoPoster;
 
+			const firstAirDate = moment(first_air_date).format('YYYY');
+			const lastAirDate = in_production ? '-' : moment(last_air_date).format('-YYYY');
+			const airDate = firstAirDate + lastAirDate;
+
+			const originalName = name !== original_name &&
+				<p><em>Original name: {original_name}</em></p>;
+
 			return (
 				<Grid>
 					<Col md={3}>
 						<Image src={renderSource(poster_path, 342)} responsive />
 					</Col>
 					<Col md={9}>
-						<PageHeader>{name} <small>({moment(first_air_date).format('YYYY')}{in_production ? '-' : moment(last_air_date).format('-YYYY')})</small></PageHeader>
-						{name !== original_name && <p><em>Original name: {original_name}</em></p>}
-						<p>{overview}</p>
-
-						<ButtonGroup>
-							<ToggleButtonGroup type='checkbox' value={this.state.selectedSeason} onChange={this.onChangeSeason}>
-								{this.renderSeasonItems(number_of_seasons)}
-							</ToggleButtonGroup>
-						</ButtonGroup>
-						{this.state.selectedSeason !== 0 && this.renderSeason()}
+						<PageHeader>{name} <small>({airDate})</small></PageHeader>
+						<Col md={9}>
+							{originalName}
+							<p>{overview}</p>
+						</Col>
+						<Col md={3}>
+							<Utility vertical />
+						</Col>
+						<Col md={12}>
+							<Seasons showId={this.props.match.params.id} noOfSeasons={number_of_seasons} />
+						</Col>
 					</Col>
 					{backdrop_path && <Col md={12}><Image src={renderSource(backdrop_path, 1280)} responsive /></Col>}
 				</Grid>
