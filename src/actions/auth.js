@@ -1,4 +1,4 @@
-import fire from '../fire';
+import { auth } from '../fire';
 import { push } from 'react-router-redux';
 
 import { 
@@ -9,7 +9,7 @@ import {
 
 export function signUpUser({ email, password }) {
 	return (dispatch) => {
-		fire.auth().createUserWithEmailAndPassword(email, password)
+		auth.createUserWithEmailAndPassword(email, password)
 			.then(() => {
 				// Change auth state
 				dispatch({ type: AUTH_USER });
@@ -25,7 +25,7 @@ export function signUpUser({ email, password }) {
 export function signInUser({ email, password, from }) {
 	return (dispatch) => {
 		// Authenticate with firebase
-		fire.auth().signInWithEmailAndPassword(email, password)
+		auth.signInWithEmailAndPassword(email, password)
 			// Success
 			.then(() => {
 				// Change auth state
@@ -47,7 +47,7 @@ export function signInUser({ email, password, from }) {
 
 export function signOutUser() {
 	return (dispatch) => {
-		fire.auth().signOut()
+		auth.signOut()
 		.then(() => {
 			dispatch({ type: UNAUTH_USER });
 		})
