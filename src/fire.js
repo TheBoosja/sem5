@@ -1,7 +1,8 @@
 import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 // Initialize Firebase
-var config = {
+const config = {
 	apiKey: 'AIzaSyDUysToslMYSrFNQ8FWiXdPKPbvBVijXgA', 
 	authDomain: 'sem5-4199d.firebaseapp.com',
 	databaseURL: 'https://sem5-4199d.firebaseio.com',
@@ -9,6 +10,8 @@ var config = {
 	storageBucket: 'sem5-4199d.appspot.com', 
 	messagingSenderId: '765890159974'
 };
-var fire = firebase.initializeApp(config);
+const fire = firebase.initializeApp(config);
 
+export const auth = fire.auth();
+export const firestore = fire.firestore();
 export default fire;
