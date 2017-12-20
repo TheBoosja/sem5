@@ -24,7 +24,7 @@ export default function (ComposedComponent) {
 			return (
 				<Modal show={this.state.modal} onHide={this.hide.bind(this)}>
 					<Modal.Body>
-						<ComposedComponent />
+						<ComposedComponent {...this.props} />
 					</Modal.Body>
 					{/* <Modal.Footer>
 						<Button bsSize='small' onClick={this.hide.bind(this)}>Cancel</Button>
