@@ -5,13 +5,15 @@ import { reducer as form } from 'redux-form';
 import auth from './reducerAuth';
 import search from './reducerSearch';
 import tv from './reducerTV';
+import utility from './reducerUtil';
 
 const rootReducer = combineReducers({
 	router,
 	form,
 	auth,
 	search,
-	tv
+	tv,
+	utility
 });
 
 export default rootReducer;

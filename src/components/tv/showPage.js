@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import * as actions from '../../actions';
+import { getWatched } from '../../actions/utility';
+
 import moment from 'moment';
 import {
 	Grid,
@@ -14,11 +17,26 @@ import Seasons from './seasons';
 import Utility from './utility';
 
 class ShowPage extends Component {
+	constructor(props) {
+		super(props);
+
+		this.getWatched = this.getWatched.bind(this);
+	}
+
 	componentWillMount() {
+		this.getWatched(this.props.authenticated, true);
+	}
+
+	componentWillUpdate(nextProps) {
+		this.getWatched(nextProps.authenticated);
+	}
+
+	getWatched(auth, shouldGetShow = false) {
 		const { id } = this.props.match.params;
 
 		if (id) {
-			this.props.getShow(id);
+			shouldGetShow && this.props.getShow(id);
+			auth && this.props.getWatched(id);
 		}
 	}
 
@@ -29,6 +47,7 @@ class ShowPage extends Component {
 	render() {
 		if (this.props.show) {
 			const {
+				id,
 				backdrop_path,
 				poster_path,
 				name,
@@ -61,10 +80,14 @@ class ShowPage extends Component {
 							<p>{overview}</p>
 						</Col>
 						<Col md={3}>
-							<Utility vertical />
+							<Utility target={{
+								id,
+								name,
+								img: poster_path
+							}} vertical />
 						</Col>
 						<Col md={12}>
-							<Seasons showId={this.props.match.params.id} noOfSeasons={number_of_seasons} />
+							<Seasons id={id} noOfSeasons={number_of_seasons} />
 						</Col>
 					</Col>
 					{backdrop_path && <Col md={12}><Image src={renderSource(backdrop_path, 1280)} responsive /></Col>}
@@ -77,9 +100,12 @@ class ShowPage extends Component {
 	}
 }
 
-function mapStateToProps({ tv }) {
+function mapStateToProps({
+	tv: { show },
+	auth: { authenticated }
+}) {
 	// if (tv.show) console.log('mapStateToProps:', tv.show);
-	return { show: tv.show };
+	return { show, authenticated };
 }
 
-export default connect(mapStateToProps, actions)(ShowPage);
+export default connect(mapStateToProps, { ...actions, getWatched })(ShowPage);

@@ -28,7 +28,7 @@ class Seasons extends Component {
 		this.props.emptySeason();
 
 		if (selectedSeason) {
-			this.props.getSeason(this.props.showId, selectedSeason);
+			this.props.getSeason(this.props.id, selectedSeason);
 		}
 	}
 
@@ -43,19 +43,31 @@ class Seasons extends Component {
 	}
 
 	renderSeason() {
-		const { overview, episodes } = this.props.season;
+		const { id, 
+			season: { 
+				name,
+				overview, 
+				episodes,
+				season_number: season,
+				poster_path: img
+			} } = this.props;
 
 		return (
 			<ListGroup componentClass='ul'>
 				<ListGroupItem>
-					<Utility />
+					<Utility target={{
+						id,
+						season,
+						name,
+						img
+					}} />
 					{overview && <em>{overview}</em>}
 				</ListGroupItem>
 
 				{episodes.map((episode, i) =>
 					<li key={i}
 						className='list-group-item'>
-						<Episode episode={episode} />
+						<Episode id={id} episode={episode} />
 					</li>
 				)}
 			</ListGroup>

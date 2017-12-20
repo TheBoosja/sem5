@@ -11,4 +11,4 @@ export const GET_SEASON = 'get_season';
 export const EMPTY_SHOW = 'empty_show';
 export const EMPTY_SEASON = 'empty_season';
 // Utility
-export const IS_WATCHED = 'is_watched';
+export const GET_WATCHED = 'get_watched';
