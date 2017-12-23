@@ -26,9 +26,6 @@ export default function (ComposedComponent) {
 					<Modal.Body>
 						<ComposedComponent {...this.props} />
 					</Modal.Body>
-					{/* <Modal.Footer>
-						<Button bsSize='small' onClick={this.hide.bind(this)}>Cancel</Button>
-					</Modal.Footer> */}
 				</Modal>
 			);
 		}
