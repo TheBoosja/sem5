@@ -1,4 +1,5 @@
 import { auth, firestore } from '../fire';
+import _ from 'lodash';
 import {
 	GET_WATCHED
 } from './types';
@@ -52,6 +53,19 @@ export function unWatch({ id, season, episode }) {
 					})
 					.ref
 					.delete();
+			});
+	};
+}
+
+export function log(logData) {
+	return () => {
+		const cleanLog = _.omitBy(logData, v => v === 'undefined');
+		const uid = auth.currentUser.uid;
+
+		firestore.doc(`users/${uid}`).collection('logs')
+			.add(cleanLog)
+			.catch(error => {
+				console.log('log catched an error', error);
 			});
 	};
 }
