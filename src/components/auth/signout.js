@@ -6,6 +6,7 @@ import { Grid } from 'react-bootstrap';
 class SignOut extends Component {
 	componentWillMount() {
 		this.props.signOutUser();
+		console.log(this.props.history);
 	}
 
 	render() {
