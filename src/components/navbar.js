@@ -19,17 +19,16 @@ class NavBar extends Component {
 				<Navbar.Collapse>
 					<Nav>
 						{authenticated && <LinkContainer to='/profile'><NavItem>Profile</NavItem></LinkContainer>}
-						<LinkContainer to={{
-							pathname: '/search',
-							state: { modal: true }
-						}}>
+						{/* Search */}
+						<LinkContainer to={{ pathname: '/search', state: { modal: true } }}>
 							<NavItem>Search</NavItem>
 						</LinkContainer>
 					</Nav>
 					<Nav pullRight>
-						{!authenticated ? [
-							<LinkContainer to='/signin' key={0}><NavItem>Sign In</NavItem></LinkContainer>,
-							<LinkContainer to='/signup' key={1}><NavItem>Sign Up</NavItem></LinkContainer>]
+						{!authenticated ?
+							<LinkContainer to={{ pathname: '/signin', state: { modal: true, from: this.props.location } }}>
+								<NavItem>Sign In</NavItem>
+							</LinkContainer>
 							:
 							<LinkContainer to='/signout'><NavItem>Sign Out</NavItem></LinkContainer>}
 					</Nav>
@@ -39,10 +38,8 @@ class NavBar extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		authenticated: state.auth.authenticated
-	};
+function mapStateToProps({ auth: { authenticated } }) {
+	return { authenticated };
 }
 
 export default withRouter(connect(mapStateToProps)(NavBar));
