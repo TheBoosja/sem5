@@ -17,7 +17,7 @@ import SearchList from './search/searchList';
 import Profile from './profile';
 
 
-class ModalSwitch extends Component {
+class Routes extends Component {
 	constructor(props) {
 		super(props);
 
@@ -67,4 +67,4 @@ class ModalSwitch extends Component {
 	}
 }
 
-export default ModalSwitch;
+export default Routes;

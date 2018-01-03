@@ -7,7 +7,7 @@ import { AUTH_USER } from '../actions/types';
 // Wrapper
 import NavBar from './navbar';
 // import Footer from './footer';
-import ModalSwitch from './routes';
+import Routes from './routes';
 
 class App extends Component {
 	componentWillMount() {
@@ -27,7 +27,7 @@ class App extends Component {
 			<div className="App">
 				<NavBar />
 
-				<Route component={ModalSwitch} />
+				<Route component={Routes} />
 
 				{/* <Footer /> */}
 			</div>
