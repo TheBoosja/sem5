@@ -1,23 +1,23 @@
 import { auth } from '../fire';
 import { push } from 'react-router-redux';
 
-import { 
+import {
 	AUTH_USER,
 	UNAUTH_USER,
 	AUTH_ERROR
 } from './types';
 
-export function signUpUser({ email, password }) {
+export function signUpUser({ email, password, from }) {
 	return (dispatch) => {
 		auth.createUserWithEmailAndPassword(email, password)
 			.then(() => {
 				// Change auth state
 				dispatch({ type: AUTH_USER });
 				// Redirect
-				dispatch(push('/'));
+				dispatch(push(from));
 			})
 			.catch(error => {
-				dispatch(authError(error.message));
+				dispatch(authError(`Unable to sign up user: ${error.message}`));
 			});
 	};
 }
@@ -35,12 +35,7 @@ export function signInUser({ email, password, from }) {
 			})
 			// Error
 			.catch(error => {
-				// if (error.code === 'auth/user-not-found'){
-				// 	dispatch(authError('Invalid credentials'));
-				// }
-				// else {
-					dispatch(authError(error.message));
-				// }
+				dispatch(authError(`Unable to sign in user: ${error.message}`));
 			});
 	};
 }
@@ -48,12 +43,12 @@ export function signInUser({ email, password, from }) {
 export function signOutUser() {
 	return (dispatch) => {
 		auth.signOut()
-		.then(() => {
-			dispatch({ type: UNAUTH_USER });
-		})
-		.catch(error => {
-			dispatch(authError(`Unable to sign out: ${error.message}`));
-		});
+			.then(() => {
+				dispatch({ type: UNAUTH_USER });
+			})
+			.catch(error => {
+				dispatch(authError(`Unable to sign out: ${error.message}`));
+			});
 	};
 }
 
