@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import {
-	Switch,
-	Route
-} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
 
 import modalView from './modalView';
-import SignIn from './auth/signin';
 import SignOut from './auth/signout';
-import SignUp from './auth/signup';
-// import requireAuth from './auth/requireAuth';
+import AuthPage from './auth/authPage';
+import requireAuth from './auth/requireAuth';
 // Routes
 import NoMatch from './noMatch.js';
 import Home from './home';
@@ -18,7 +14,7 @@ import Log from './tv/log';
 
 import SearchBar from './search/searchBar';
 import SearchList from './search/searchList';
-// import Profile from './profile';
+import Profile from './profile';
 
 
 class ModalSwitch extends Component {
@@ -47,26 +43,26 @@ class ModalSwitch extends Component {
 
 		const modals = (
 			<div>
+				<Route path='/signin' component={modalView(AuthPage)} />
 				<Route path='/search' component={modalView(SearchBar)} />
 				<Route path='/tv/:id/:season?/:episode?/log' component={modalView(Log)} />
 			</div>
 		);
 
 		return (
-			<div>
+			<Grid>
 				<Switch location={isModal ? this.prevLocation : location}>
 					<Route exact path='/' component={Home} />
-					<Route path='/signin' component={SignIn} />
-					<Route path='/signup' component={SignUp} />
+					<Route path='/signin' component={AuthPage} />
 					<Route path='/signout' component={SignOut} />
 					<Route exact path='/tv/:id' component={ShowPage} />
-					<Route exact path='/search' render={() => <Grid><SearchBar /></Grid>} />
+					<Route exact path='/search' component={SearchBar} />
 					<Route path='/search/:query' component={SearchList} />;
-					{/* <Route path='/:user' component={requireAuth(Profile)} /> */}
+					<Route path='/profile/:user?' component={requireAuth(Profile)} />
 					<Route component={NoMatch} />
 				</Switch>
 				{isModal ? modals : null}
-			</div>
+			</Grid>
 		);
 	}
 }
