@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Redirect } from 'react-router-dom';
 import * as actions from '../../actions/auth';
 import {
-	Grid,
 	Form,
 	FormGroup,
 	FormControl,
@@ -17,6 +17,9 @@ class SignIn extends Component {
 	constructor(props) {
 		super(props);
 
+		this.colWidth = 9;
+
+		this.renderField = this.renderField.bind(this);
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
@@ -24,17 +27,15 @@ class SignIn extends Component {
 		this.props.authError('');
 	}
 
-	renderField(field) {
-		const { meta: { touched, error } } = field;
-
+	renderField({ name, label, input, type, meta: { touched, error } }) {
 		return (
-			<FormGroup controlId={field.name}>
-				<Col componentClass={ControlLabel} sm={2}>{field.label}</Col>
-				<Col sm={8}>
+			<FormGroup controlId={name}>
+				<Col componentClass={ControlLabel} sm={2}>{label}</Col>
+				<Col sm={this.colWidth}>
 					<FormControl
-						{...field.input}
-						type={field.type}
-						placeholder={field.label} />
+						{...input}
+						type={type}
+						placeholder={label} />
 					{/* Input error message */}
 					{touched && error && <div className='error'>{error}</div>}
 				</Col>
@@ -45,7 +46,7 @@ class SignIn extends Component {
 	renderAlert() {
 		if (this.props.errorMessage) {
 			return (
-				<Col smOffset={2} sm={8}>
+				<Col smOffset={2} sm={this.colWidth}>
 					<Alert bsStyle='danger'>
 						{this.props.errorMessage}
 					</Alert>
@@ -55,16 +56,19 @@ class SignIn extends Component {
 	}
 
 	onFormSubmit({ email, password }) {
-		const { from } = this.props.location.state || { from: { pathname: '/' } };
-		this.props.signInUser({ email, password, from });
+		const { from } = this.props.location.state;
+		const prevLocation = from.pathname !== '/signout' ? from : { from: { pathname: '/profile' } };
+
+		this.props.signInUser({ email, password, prevLocation });
 	}
 
 	render() {
 		const { handleSubmit } = this.props;
 
-		return (
-			<Grid>
+		if (!this.props.authenticated) {
+			return (
 				<Form onSubmit={handleSubmit(this.onFormSubmit)} horizontal>
+					<h3>Sign In</h3>
 					<Field
 						label='Email'
 						name='email'
@@ -77,15 +81,18 @@ class SignIn extends Component {
 						component={this.renderField} />
 					{this.renderAlert()}
 					<FormGroup>
-						<Col smOffset={2} sm={8}>
+						<Col smOffset={2} sm={this.colWidth}>
 							<Button type='submit'>
 								Sign In
 							</Button>
 						</Col>
 					</FormGroup>
 				</Form>
-			</Grid>
-		);
+			);
+		}
+		else {
+			return <Redirect to={'/profile'} />;
+		}
 	}
 }
 
@@ -108,8 +115,8 @@ function validate({ email, password }) {
 	return errors;
 }
 
-function mapStateToProps({ auth }) {
-	return { errorMessage: auth.error };
+function mapStateToProps({ auth: { authenticated, error } }) {
+	return { authenticated, errorMessage: error };
 }
 
 export default reduxForm({

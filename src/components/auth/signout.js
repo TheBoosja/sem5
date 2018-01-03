@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/auth';
-import { Grid } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 
 class SignOut extends Component {
 	componentWillMount() {
 		this.props.signOutUser();
-		console.log(this.props.history);
 	}
 
 	render() {
 		return (
-			<Grid>
-				<h2>Sorry to see you go...</h2>
-			</Grid>
+			<Jumbotron>
+				<h1>Farewell</h1>
+				<p>You have been signed out...</p>
+			</Jumbotron>
 		);
 	}
 }
