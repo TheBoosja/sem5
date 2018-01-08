@@ -6,6 +6,8 @@ import { Jumbotron } from 'react-bootstrap';
 class SignOut extends Component {
 	componentWillMount() {
 		this.props.signOutUser();
+
+		// CLEAR UTILITY DATA FROM APP-STATE
 	}
 
 	render() {
