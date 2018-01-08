@@ -6,7 +6,7 @@ import fire from '../fire';
 import { AUTH_USER } from '../actions/types';
 // Wrapper
 import NavBar from './navbar';
-// import Footer from './footer';
+import Footer from './footer';
 import Routes from './routes';
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
 
 				<Route component={Routes} />
 
-				{/* <Footer /> */}
+				<Footer />
 			</div>
 		);
 	}

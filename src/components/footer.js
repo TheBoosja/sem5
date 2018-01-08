@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, Image } from 'react-bootstrap';
 
-import tmdb from '../tmdb.svg';
-import logo from '../logo.svg';
+import tmdb from '../img/tmdb.svg';
+import logo from '../img/logo.svg';
 import { title } from '../info';
 
 class Footer extends Component {
 	render() {
 		return (
-			<Navbar staticTop fixedBottom>
+			<Navbar staticTop className='footer'>
 				<Navbar.Collapse>
 					<Navbar.Text><small>{title}</small></Navbar.Text>
 					<Nav pullRight>
