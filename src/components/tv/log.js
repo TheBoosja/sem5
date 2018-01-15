@@ -29,12 +29,13 @@ class Log extends Component {
 
 		if (_.isEmpty(log)) {
 			console.log('is empty', log);
-			// this.props.watch({ id, season, episode });
+			this.props.watch({ id, season, episode });
 		}
 		else {
 			console.log('full with info', log);
 			this.props.log({ id, season, episode, ...log });
 		}
+		this.props.hide();
 	}
 
 	render() {
