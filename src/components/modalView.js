@@ -9,6 +9,8 @@ export default function (ComposedComponent) {
 			this.state = {
 				modal: this.props.location.state.modal
 			};
+
+			this.hide = this.hide.bind(this);
 		}
 
 		hide() {
@@ -22,9 +24,9 @@ export default function (ComposedComponent) {
 
 		render() {
 			return (
-				<Modal show={this.state.modal} onHide={this.hide.bind(this)}>
+				<Modal show={this.state.modal} onHide={this.hide}>
 					<Modal.Body>
-						<ComposedComponent {...this.props} />
+						<ComposedComponent {...this.props} hide={this.hide} />
 					</Modal.Body>
 				</Modal>
 			);
