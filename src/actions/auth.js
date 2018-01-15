@@ -9,6 +9,7 @@ import {
 
 export function signUpUser({ email, password, from }) {
 	return (dispatch) => {
+		// Create User in Firebase
 		auth.createUserWithEmailAndPassword(email, password)
 			.then(() => {
 				// Change auth state
@@ -24,7 +25,7 @@ export function signUpUser({ email, password, from }) {
 
 export function signInUser({ email, password, from }) {
 	return (dispatch) => {
-		// Authenticate with firebase
+		// Authenticate with Firebase
 		auth.signInWithEmailAndPassword(email, password)
 			// Success
 			.then(() => {
@@ -33,7 +34,6 @@ export function signInUser({ email, password, from }) {
 				// Redirect
 				dispatch(push(from));
 			})
-			// Error
 			.catch(error => {
 				dispatch(authError(`Unable to sign in user: ${error.message}`));
 			});
@@ -52,7 +52,7 @@ export function signOutUser() {
 	};
 }
 
-export function authError(error) {
+function authError(error) {
 	return {
 		type: AUTH_ERROR,
 		payload: error
