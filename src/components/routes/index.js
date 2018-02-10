@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
 
-import modalView from './modalView';
-import SignOut from './auth/signout';
-import AuthPage from './auth/authPage';
-import requireAuth from './auth/requireAuth';
+import modalView from '../routes/modalView';
+import SignOut from '../auth/signout';
+import AuthPage from '../auth/authPage';
+import requireAuth from '../auth/requireAuth';
 // Routes
-import NoMatch from './noMatch.js';
-import Home from './home';
-import ShowPage from './tv/showPage';
-import Log from './tv/log';
+import NoMatch from '../routes/noMatch.js';
+import Home from '../home';
+import ShowPage from '../tv/showPage';
+import Log from '../tv/log';
 
-import SearchBar from './search/searchBar';
-import SearchList from './search/searchList';
-import Profile from './profile';
+import SearchBar from '../search/searchBar';
+import SearchList from '../search/searchList';
+import Profile from '../profile';
 
 
 class Routes extends Component {
@@ -41,13 +41,11 @@ class Routes extends Component {
 			this.prevLocation !== location
 		);
 
-		const modals = (
-			<div>
+		const modals = <div>
 				<Route path='/signin' component={modalView(AuthPage)} />
 				<Route path='/search' component={modalView(SearchBar)} />
 				<Route path='/tv/:id/:season?/:episode?/log' component={modalView(Log)} />
-			</div>
-		);
+			</div>;
 
 		return (
 			<Grid>

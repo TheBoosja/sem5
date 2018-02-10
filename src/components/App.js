@@ -5,8 +5,8 @@ import { Route } from 'react-router-dom';
 import fire from '../fire';
 import { AUTH_USER } from '../actions/types';
 // Wrapper
-import NavBar from './navbar';
-import Footer from './footer';
+import NavBar from './layout/navbar';
+import Footer from './layout/footer';
 import Routes from './routes';
 
 class App extends Component {
