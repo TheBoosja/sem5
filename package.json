@@ -28,8 +28,8 @@
     "build": "npm-run-all build-css build-js",
     "start-js": "react-scripts start",
     "build-js": "react-scripts build",
-    "build-css": "node-sass-chokidar --include-path ./src src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/ -o src/ --watch --recursive",
+    "build-css":                      "node-sass-chokidar --include-path ./src src/index.scss src/index.css",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src src/index.scss src/index.css --watch --recursive",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
