@@ -9,7 +9,7 @@ class SearchShowItem extends Component {
 		const { show: { id, poster_path, name, first_air_date } } = this.props;
 
 		const source = poster_path ?
-			`http://image.tmdb.org/t/p/w154${poster_path}` :
+			`https://image.tmdb.org/t/p/w154${poster_path}` :
 			NoPoster;
 
 		return (

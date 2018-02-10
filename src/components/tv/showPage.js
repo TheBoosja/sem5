@@ -59,7 +59,7 @@ class ShowPage extends Component {
 				number_of_seasons
 			} = this.props.show;
 
-			const renderSource = (path, size) => path ? `http://image.tmdb.org/t/p/w${size}${path}` : NoPoster;
+			const renderSource = (path, size) => path ? `https://image.tmdb.org/t/p/w${size}${path}` : NoPoster;
 
 			const firstAirDate = moment(first_air_date).format('YYYY');
 			const lastAirDate = in_production ? '-' : moment(last_air_date).format('-YYYY');
