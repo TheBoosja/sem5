@@ -1,0 +1,46 @@
+.nav {
+	// background-color: $clr-bg-2;
+	grid-column: 1 / -1;
+
+	display: grid;
+	grid-template-columns: $grid-clms-primary;
+
+	&__list {
+		// background-color: $clr-bg-1;
+		grid-column: $grid-clms-content;
+		list-style: none;
+
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+	}
+
+	&__item {
+		&--auth {
+			grid-column: 8 / 9;
+		}
+	}
+
+	&__link {
+		&:link,
+		&:visited {
+			color: $clr-primary-light-1;
+			display: block;
+			font-size: 1.6rem;
+			font-weight: 500;
+			padding: 1.5rem;
+			text-align: center;
+			text-decoration: none;
+			text-transform: uppercase;
+		}
+
+		&:hover,
+		&:active {
+			background-color: $clr-primary;
+			// color: $clr-bg-2;
+		}
+	}
+
+	&__active {
+		background-color: $clr-primary;
+	}
+}

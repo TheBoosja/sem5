@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Grid } from 'react-bootstrap';
 
 import modalView from '../routes/modalView';
 import SignOut from '../auth/signout';
@@ -48,7 +47,7 @@ class Routes extends Component {
 			</div>;
 
 		return (
-			<Grid>
+			<div className='content'>
 				<Switch location={isModal ? this.prevLocation : location}>
 					<Route exact path='/' component={Home} />
 					<Route path='/signin' component={AuthPage} />
@@ -60,7 +59,7 @@ class Routes extends Component {
 					<Route component={NoMatch} />
 				</Switch>
 				{isModal ? modals : null}
-			</Grid>
+			</div>
 		);
 	}
 }

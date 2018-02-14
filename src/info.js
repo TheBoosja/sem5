@@ -1,1 +1,1 @@
-export const title = 'Final Exam Project';
+export const title = 'TV Logging Project';

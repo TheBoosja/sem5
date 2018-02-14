@@ -1,39 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 class NavBar extends Component {
 	render() {
 		const { authenticated } = this.props;
 
 		return (
-			<Navbar inverse staticTop>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<NavLink exact to='/' id='home' activeClassName='active'>Home</NavLink>
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				</Navbar.Header>
-				<Navbar.Collapse>
-					<Nav>
-						{authenticated && <LinkContainer to='/profile'><NavItem>Profile</NavItem></LinkContainer>}
-						{/* Search */}
-						<LinkContainer to={{ pathname: '/search', state: { modal: true } }}>
-							<NavItem>Search</NavItem>
-						</LinkContainer>
-					</Nav>
-					<Nav pullRight>
-						{!authenticated ?
-							<LinkContainer to={{ pathname: '/signin', state: { modal: true, from: this.props.location } }}>
-								<NavItem>Sign In</NavItem>
-							</LinkContainer>
-							:
-							<LinkContainer to='/signout'><NavItem>Sign Out</NavItem></LinkContainer>}
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
+			<nav className='nav'>
+				<ul className='nav__list'>
+					<li className='nav__item'>
+						<NavLink
+							exact 
+							to='/' 
+							activeClassName='nav__active' 
+							className='nav__link'>
+							Home
+						</NavLink>
+					</li>
+
+					{authenticated && 
+						<li className='nav__item'>
+							<NavLink 
+								to='/profile' 
+								activeClassName='nav__active' 
+								className='nav__link'>
+								Profile
+							</NavLink>
+						</li>}
+					
+					<li className='nav__item'>
+						<NavLink
+							to='/search'
+							activeClassName='nav__active'
+							className='nav__link'>
+							Search
+						</NavLink>
+					</li>
+
+					{!authenticated ?
+						<li className='nav__item--auth'>
+							<NavLink 
+								to={{ pathname: '/signin', state: { modal: true, from: this.props.location } }}
+								activeClassName='nav__active'
+								className='nav__link'>
+								Sign In
+							</NavLink>
+						</li>
+						:
+						<li className='nav__item--auth'>
+							<NavLink 
+								to='/signout'
+								activeClassName='nav__active'
+								className='nav__link'>
+								Sign Out
+							</NavLink>
+						</li>}
+				</ul>
+			</nav>
 		);
 	}
 }

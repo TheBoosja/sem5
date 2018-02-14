@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions/search';
-import { Form, FormGroup, FormControl } from 'react-bootstrap';
+// import { Form, FormGroup, FormControl } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 class SearchBar extends Component {
@@ -13,15 +13,17 @@ class SearchBar extends Component {
 			query: '',
 			redirectToSearchResult: false
 		};
+
+		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
-	renderField(field) {
-		return (
-			<FormGroup bsSize='large'>
-				<FormControl {...field.input} placeholder={field.label} autoFocus />
-			</FormGroup>
-		);
-	}
+	// renderField(field) {
+	// 	return (
+	// 		<FormGroup bsSize='large'>
+	// 			<FormControl {...field.input} placeholder={field.label} autoFocus />
+	// 		</FormGroup>
+	// 	);
+	// }
 
 	onFormSubmit({ query }) {
 		if (query)
@@ -36,12 +38,16 @@ class SearchBar extends Component {
 
 		if (!this.state.redirectToSearchResult) {
 			return (
-				<Form onSubmit={handleSubmit(this.onFormSubmit.bind(this))}>
+				<form
+					onSubmit={handleSubmit(this.onFormSubmit)}
+					className='search'>
 					<Field
-						label='Search'
 						name='query'
-						component={this.renderField} />
-				</Form>
+						component='input'
+						className='search__input'
+						label='Search'
+						placeholder='Search' />
+				</form>
 			);
 		}
 		else {

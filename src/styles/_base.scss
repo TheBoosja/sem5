@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	font-size: 62.5%; // 10px
+}
+
+body {
+	background-color: $clr-bg-1;
+}
+
+.app {
+	// background-color: $clr-bg-1;
+	// min-height: 100vh;
+
+	display: grid;
+	grid-template-columns: $grid-clms-primary;
+	grid-template-rows: min-content 1fr min-content;
+}
+
+.content {
+	// background-color: $clr-bg-1;
+	grid-column: $grid-clms-content;
+	grid-row: 2 / 3;
+	padding: 5rem;
+}

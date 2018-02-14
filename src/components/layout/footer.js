@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, Image } from 'react-bootstrap';
 
 import tmdb from '../../img/tmdb.svg';
 import logo from '../../img/logo.svg';
-import { title } from '../../info';
+// import { title } from '../../info';
 
 class Footer extends Component {
 	render() {
 		return (
-			<Navbar staticTop className='footer'>
-				<Navbar.Collapse>
-					<Navbar.Text><small>{title}</small></Navbar.Text>
-					<Nav pullRight>
-						<NavItem href='https://reactjs.net/'><Image className='logo' src={logo} responsive /></NavItem>
-						<NavItem href='https://www.tmdb.org'><Image className='logo' src={tmdb} responsive /></NavItem>
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
+			<footer className='footer'>
+				<p className='footer__text'>&copy; Copyright 2018 by Mathias Iversen</p>
+				<a href='https://reactjs.org/' className='footer__link'>
+					<img className='footer__img footer__img--1' src={logo} alt='React logo' />
+				</a>
+				<a href='https://www.tmdb.org' className='footer__link'>
+					<img className='footer__img footer__img--2' src={tmdb} alt='TMDb logo' />
+				</a>
+			</footer>
 		);
 	}
 }

@@ -1,0 +1,33 @@
+.footer {
+	// background-color: $clr-bg-1;
+	grid-column: 2 / -2;
+	padding: 2rem ;
+
+	display: grid;
+	grid-template-columns: minmax(max-content, 5fr) repeat(2, 1fr);
+
+	&__text {
+		align-self: center;
+		font-size: 1.6rem;
+		// grid-column: 2 / 3;
+		padding-left: 2rem;
+	}
+
+	&__link {
+		justify-self: center;
+		height: 5vw;
+	}
+
+	&__img {
+		height: 100%;
+		padding: 1rem;
+
+		&--1 {
+			transform: translateY(.3rem);
+		}
+
+		&--2 {
+			transform: translateY(.4rem);
+		}
+	}
+}

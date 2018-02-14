@@ -1,0 +1,16 @@
+.logo {
+	height: 40px;
+}
+
+div .error {
+	color: red;
+}
+
+@import "styles/variables";
+@import "styles/typography";
+@import "styles/base";
+
+@import "styles/navbar";
+@import "styles/home";
+@import "styles/search";
+@import "styles/footer";
