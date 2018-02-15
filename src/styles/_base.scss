@@ -12,21 +12,37 @@ html {
 }
 
 body {
-	background-color: $clr-bg-1;
+	background-color: $clr-primary-bg;
 }
 
 .app {
-	// background-color: $clr-bg-1;
-	// min-height: 100vh;
-
 	display: grid;
 	grid-template-columns: $grid-clms-primary;
 	grid-template-rows: min-content 1fr min-content;
 }
 
 .content {
-	// background-color: $clr-bg-1;
 	grid-column: $grid-clms-content;
 	grid-row: 2 / 3;
-	padding: 5rem;
+}
+
+.btn {
+	&:link,
+	&:visited {
+		background-color: $clr-primary;
+		color: $clr-white;
+		display: block;
+		font-family: "Roboto", sans-serif;
+		font-size: 1.5rem;
+		padding: 2rem 3rem;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: all .2s;
+	}
+
+	&:hover,
+	&:active {
+		background-color: $clr-primary-light;
+	}
 }

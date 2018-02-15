@@ -1,5 +1,5 @@
 .home {
-	// align-self: center;
+	padding: 5rem;
 
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -35,8 +35,6 @@
 		grid-row: 1 / -1;
 
 		display: grid;
-		// grid-template-columns: repeat(7, 1fr);
-		// grid-template-rows: repeat(9, 1fr);
 		grid-auto-columns: 1fr;
 		grid-auto-rows: 1fr;
 	}
@@ -77,26 +75,5 @@
 			grid-column-start: 5;
 			grid-row-start: 5;
 		}
-	}
-}
-
-.btn {
-	&:link,
-	&:visited {
-		background-color: $clr-primary;
-		color: #fff;
-		display: block;
-		font-family: "Roboto", sans-serif;
-		font-size: 1.5rem;
-		padding: 2rem 3rem;
-		text-align: center;
-		text-decoration: none;
-		text-transform: uppercase;
-		transition: all .2s;
-	}
-
-	&:hover,
-	&:active {
-		background-color: $clr-primary-light;
 	}
 }

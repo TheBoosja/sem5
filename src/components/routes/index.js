@@ -11,7 +11,7 @@ import Home from '../home';
 import ShowPage from '../tv/showPage';
 import Log from '../tv/log';
 
-import SearchBar from '../search/searchBar';
+import Search from '../search';
 import SearchList from '../search/searchList';
 import Profile from '../profile';
 
@@ -42,7 +42,7 @@ class Routes extends Component {
 
 		const modals = <div>
 				<Route path='/signin' component={modalView(AuthPage)} />
-				<Route path='/search' component={modalView(SearchBar)} />
+				<Route path='/search' component={modalView(Search)} />
 				<Route path='/tv/:id/:season?/:episode?/log' component={modalView(Log)} />
 			</div>;
 
@@ -53,7 +53,7 @@ class Routes extends Component {
 					<Route path='/signin' component={AuthPage} />
 					<Route path='/signout' component={SignOut} />
 					<Route exact path='/tv/:id' component={ShowPage} />
-					<Route exact path='/search' component={SearchBar} />
+					<Route path='/search' component={Search} />
 					<Route path='/search/:query' component={SearchList} />;
 					<Route path='/profile/:user?' component={requireAuth(Profile)} />
 					<Route component={NoMatch} />

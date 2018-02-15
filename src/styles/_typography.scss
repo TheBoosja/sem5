@@ -2,7 +2,7 @@ body {
 	font-family: "Roboto", sans-serif;
 	font-weight: 400;
 	line-height: 1.6;
-	color: $clr-primary-light-1;
+	color: $clr-primary-highlight;
 }
 
 .heading-1 {
@@ -10,10 +10,15 @@ body {
 }
 
 .heading-2 {
-
+	font-size: 3rem;
 }
 
 .heading-3 {
 	font-size: 2rem;
+	line-height: 1;
+}
+
+.heading-4 {
+	font-size: 1.6rem;
 	line-height: 1;
 }

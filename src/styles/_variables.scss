@@ -1,28 +1,15 @@
 // COLORS
-$clr-primary-dark: 		#001242;
 $clr-primary: 			#064789;
 $clr-primary-light: 	#0094c6;
+$clr-primary-highlight:	#b4deea;
+$clr-primary-details:	#085b8c;
+$clr-primary-bg:		#0b3954;
 
-// $clr-dark-1:			#040f16;
-// $clr-dark-2: 			#00040f;
-// $clr-dark-3: 			#040b1c;
-
-$clr-primary-light-1:	#b4deea;
-
-// COLORS
-$clr-dark-1:			#283044;
-// $clr-bg-2:				#10131c;
-$clr-bg-2:				#085b8c;
-$clr-bg-1:				#0b3954;
-
-$clr-secondary:			#69140e;
-$clr-secondary-light-1:	#a44200;
-$clr-secondary-light-2:	#d58936;
-$clr-secondary-light-3:	#f2f3ae;
-
+$clr-white:				#ffffff;
 
 // LAYOUT
-$grid-clms-primary: [left-start] minmax(6rem, 2fr) 
+$grid-sidegap: minmax(2rem, 2fr);
+$grid-clms-primary: [left-start] $grid-sidegap
 					[left-end content-start] repeat(8, minmax(min-content, 1fr))
-					[content-end right-start] minmax(6rem, 2fr) [right-end];
+					[content-end right-start] $grid-sidegap [right-end];
 $grid-clms-content: content-start / content-end;

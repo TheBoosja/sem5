@@ -1,5 +1,4 @@
 .footer {
-	// background-color: $clr-bg-1;
 	grid-column: 2 / -2;
 	padding: 2rem ;
 
@@ -9,8 +8,7 @@
 	&__text {
 		align-self: center;
 		font-size: 1.6rem;
-		// grid-column: 2 / 3;
-		padding-left: 2rem;
+		// padding-left: 2rem;
 	}
 
 	&__link {
