@@ -4,6 +4,8 @@
 Installation
 * npm install
 * npm start
+
 OR
+
 * yarn install
 * yarn start
