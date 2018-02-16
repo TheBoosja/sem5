@@ -51,6 +51,8 @@
 
 		&:hover {
 			background-color: $clr-primary-light;
+			text-decoration: none;
+			color: inherit;
 		}
 	}
 
@@ -71,10 +73,10 @@
 	}
 
 	&__title {
-		
+		margin: 0;
 	}
 
 	&__date {
-
+		margin: 0;
 	}
 }

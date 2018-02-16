@@ -7,6 +7,8 @@ body {
 
 .heading-1 {
 	font-size: 4.5rem;
+	// bootstrap corrections
+	margin: 0;
 }
 
 .heading-2 {
@@ -16,6 +18,9 @@ body {
 .heading-3 {
 	font-size: 2rem;
 	line-height: 1;
+	// bootstrap corrections
+	color: $clr-primary-highlight;
+	margin: 0;
 }
 
 .heading-4 {

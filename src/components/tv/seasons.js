@@ -76,7 +76,7 @@ class Seasons extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className='seasons'>
 				<ButtonGroup>
 					<ToggleButtonGroup type='checkbox' value={this.state.selectedSeason} onChange={this.onChangeSeason}>
 						{this.renderSeasonItems(this.props.noOfSeasons)}

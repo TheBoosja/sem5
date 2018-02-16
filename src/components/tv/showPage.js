@@ -5,12 +5,12 @@ import * as actions from '../../actions';
 import { getWatched } from '../../actions/utility';
 
 import moment from 'moment';
-// import {
-// 	Grid,
-// 	Col,
-// 	Image,
-// 	PageHeader
-// } from 'react-bootstrap';
+import {
+	Grid,
+	Col,
+	Image,
+	PageHeader
+} from 'react-bootstrap';
 import NoPoster from '../../img/no_poster_w270.png';
 
 import Seasons from './seasons';
@@ -69,29 +69,33 @@ class ShowPage extends Component {
 				<p><em>Original name: {original_name}</em></p>;
 
 			return (
-				<div className='tv'>
-					{backdrop_path && 
-						<img src={renderSource(backdrop_path, 1280)} alt="Backdrop Image" className="tv__backdrop"/>}
-					<img src={renderSource(poster_path, 342)} alt='Poster' className='tv__poster' />
-
-					<h1 className="tv__title heading-1">
-						{name} <small className="tv__subtitle">({airDate})</small>
-					</h1>
-					{originalName}
-					<p className='tv__overview'>{overview}</p>
-
-					<Utility target={{
-						id,
-						name,
-						img: poster_path
-					}} vertical />
-
-					<Seasons id={id} noOfSeasons={number_of_seasons} />
-				</div>
+				<Grid>
+					<Col md={3}>
+						<Image src={renderSource(poster_path, 342)} responsive />
+					</Col>
+					<Col md={9}>
+						<PageHeader>{name} <small>({airDate})</small></PageHeader>
+						<Col md={9}>
+							{originalName}
+							<p>{overview}</p>
+						</Col>
+						<Col md={3}>
+							<Utility target={{
+								id,
+								name,
+								img: poster_path
+							}} vertical />
+						</Col>
+						<Col md={12}>
+							<Seasons id={id} noOfSeasons={number_of_seasons} />
+						</Col>
+					</Col>
+					{backdrop_path && <Col md={12}><Image src={renderSource(backdrop_path, 1280)} responsive /></Col>}
+				</Grid>
 			);
 		}
 		else {
-			return <h3 className='heading-3'>Loading...</h3>;
+			return <Grid><h3>Loading...</h3></Grid>;
 		}
 	}
 }

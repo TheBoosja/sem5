@@ -17,9 +17,6 @@ class SearchShowItem extends Component {
 			`https://image.tmdb.org/t/p/w300${poster_path}` :
 			NoPoster;
 
-		// DELETE
-		console.log(this.props.show);
-
 		return (
 			<Link to={`/tv/${id}`} className='search__link'>
 				<figure className='search__figure'>
